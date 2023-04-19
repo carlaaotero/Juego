@@ -5,4 +5,5 @@
 	Version1 comuniacada por Adrià
 	URL del video: https://youtu.be/3z8-RbdUEK4
 	Version2 generada por Adria
+	Version2 verificada por Carla
 	
