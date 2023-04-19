@@ -1,7 +1,7 @@
 ﻿
 namespace ProjecteClient
 {
-    partial class Form1
+    partial class FormPrincipal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -32,14 +32,20 @@ namespace ProjecteClient
             this.Connect_btn = new System.Windows.Forms.Button();
             this.LogInBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.EnviarBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.UsuariBtn = new System.Windows.Forms.RadioButton();
             this.PartMaxBtn = new System.Windows.Forms.RadioButton();
             this.PuntMaxBtn = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.EnviarBtn = new System.Windows.Forms.Button();
             this.SigInBtn = new System.Windows.Forms.Button();
+            this.DisconectBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ConexionActual = new System.Windows.Forms.Panel();
+            this.ListaConectados = new System.Windows.Forms.DataGridView();
+            this.ConectadosBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
             this.SuspendLayout();
             // 
             // Connect_btn
@@ -75,7 +81,26 @@ namespace ProjecteClient
             this.groupBox1.Size = new System.Drawing.Size(583, 176);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Consultas";
+            // 
+            // EnviarBtn
+            // 
+            this.EnviarBtn.Location = new System.Drawing.Point(426, 21);
+            this.EnviarBtn.Name = "EnviarBtn";
+            this.EnviarBtn.Size = new System.Drawing.Size(82, 53);
+            this.EnviarBtn.TabIndex = 5;
+            this.EnviarBtn.Text = "Enviar";
+            this.EnviarBtn.UseVisualStyleBackColor = true;
+            this.EnviarBtn.Click += new System.EventHandler(this.EnviarBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 130);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "nombre Jugador";
             // 
             // textBox1
             // 
@@ -117,25 +142,6 @@ namespace ProjecteClient
             this.PuntMaxBtn.Text = "jugador con maxima puntuacion";
             this.PuntMaxBtn.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 130);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "nombre Jugador";
-            // 
-            // EnviarBtn
-            // 
-            this.EnviarBtn.Location = new System.Drawing.Point(426, 21);
-            this.EnviarBtn.Name = "EnviarBtn";
-            this.EnviarBtn.Size = new System.Drawing.Size(82, 53);
-            this.EnviarBtn.TabIndex = 5;
-            this.EnviarBtn.Text = "Enviar";
-            this.EnviarBtn.UseVisualStyleBackColor = true;
-            this.EnviarBtn.Click += new System.EventHandler(this.EnviarBtn_Click);
-            // 
             // SigInBtn
             // 
             this.SigInBtn.Location = new System.Drawing.Point(39, 123);
@@ -146,20 +152,74 @@ namespace ProjecteClient
             this.SigInBtn.UseVisualStyleBackColor = true;
             this.SigInBtn.Click += new System.EventHandler(this.SigInBtn_Click);
             // 
-            // Form1
+            // DisconectBtn
+            // 
+            this.DisconectBtn.Location = new System.Drawing.Point(182, 22);
+            this.DisconectBtn.Name = "DisconectBtn";
+            this.DisconectBtn.Size = new System.Drawing.Size(112, 74);
+            this.DisconectBtn.TabIndex = 8;
+            this.DisconectBtn.Text = "Desconectar";
+            this.DisconectBtn.UseVisualStyleBackColor = true;
+            this.DisconectBtn.Click += new System.EventHandler(this.DisconectBtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(375, 205);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Conexión";
+            // 
+            // ConexionActual
+            // 
+            this.ConexionActual.Location = new System.Drawing.Point(447, 205);
+            this.ConexionActual.Name = "ConexionActual";
+            this.ConexionActual.Size = new System.Drawing.Size(23, 24);
+            this.ConexionActual.TabIndex = 10;
+            // 
+            // ListaConectados
+            // 
+            this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaConectados.Location = new System.Drawing.Point(505, 246);
+            this.ListaConectados.Name = "ListaConectados";
+            this.ListaConectados.RowHeadersWidth = 51;
+            this.ListaConectados.RowTemplate.Height = 24;
+            this.ListaConectados.Size = new System.Drawing.Size(240, 150);
+            this.ListaConectados.TabIndex = 14;
+            // 
+            // ConectadosBtn
+            // 
+            this.ConectadosBtn.Location = new System.Drawing.Point(375, 246);
+            this.ConectadosBtn.Name = "ConectadosBtn";
+            this.ConectadosBtn.Size = new System.Drawing.Size(106, 55);
+            this.ConectadosBtn.TabIndex = 13;
+            this.ConectadosBtn.Text = "Ver Conectados";
+            this.ConectadosBtn.UseVisualStyleBackColor = true;
+            this.ConectadosBtn.Click += new System.EventHandler(this.ConectadosBtn_Click);
+            // 
+            // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 450);
+            this.Controls.Add(this.ListaConectados);
+            this.Controls.Add(this.ConectadosBtn);
+            this.Controls.Add(this.ConexionActual);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.DisconectBtn);
             this.Controls.Add(this.SigInBtn);
             this.Controls.Add(this.LogInBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Connect_btn);
-            this.Name = "Form1";
+            this.Name = "FormPrincipal";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -175,6 +235,11 @@ namespace ProjecteClient
         private System.Windows.Forms.Button EnviarBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button SigInBtn;
+        private System.Windows.Forms.Button DisconectBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel ConexionActual;
+        private System.Windows.Forms.DataGridView ListaConectados;
+        private System.Windows.Forms.Button ConectadosBtn;
     }
 }
 

@@ -12,11 +12,11 @@ using System.Net.Sockets;
 
 namespace ProjecteClient
 {
-    public partial class Form1 : Form
+    public partial class FormPrincipal : Form
     {
         Socket server;
         string nom, contra;
-        public Form1()
+        public FormPrincipal()
         {
             InitializeComponent();
         }
@@ -25,8 +25,8 @@ namespace ProjecteClient
         {
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("10.192.213.110");
-            IPEndPoint ipep = new IPEndPoint(direc, 9050);
+            IPAddress direc = IPAddress.Parse("192.168.56.102");
+            IPEndPoint ipep = new IPEndPoint(direc, 9060);
 
 
             //Creamos el socket 
@@ -34,7 +34,6 @@ namespace ProjecteClient
             try
             {
                 server.Connect(ipep);//Intentamos conectar el socket
-                this.BackColor = Color.Green;
                 MessageBox.Show("Conectado");
 
             }
@@ -44,6 +43,11 @@ namespace ProjecteClient
                 MessageBox.Show("No he podido conectar con el servidor");
                 return;
             }
+            ConexionActual.BackColor = Color.Green;
+            SigInBtn.Enabled = true;
+            LogInBtn.Enabled = true;
+            EnviarBtn.Enabled = true;
+            DisconectBtn.Enabled = true;
         }
 
         private void EnviarBtn_Click(object sender, EventArgs e)
@@ -53,8 +57,14 @@ namespace ProjecteClient
                 string mensaje = "3/";
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
+                try
+                {
+                    server.Send(msg);
+                }
+                finally
+                {
+                    MessageBox.Show("Error al enviar el mensaje");
+                }
                 //Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
@@ -66,8 +76,14 @@ namespace ProjecteClient
                 string mensaje = "4/" + textBox1.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
+                try
+                {
+                    server.Send(msg);
+                }
+                finally
+                {
+                    MessageBox.Show("Error al enviar el mensaje");
+                }
                 //Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
@@ -98,30 +114,107 @@ namespace ProjecteClient
 
         private void SigInBtn_Click(object sender, EventArgs e)
         {
-            Form2 f1 = new Form2();
+            FormLogSigIn f1 = new FormLogSigIn();
             f1.SetId(2);
             f1.ShowDialog();
-
+            string id1, pu;
+            Random r = new Random();
+            id1 =Convert.ToString( r.Next(1000,9000));
             this.nom = f1.GetNom();
             this.contra = f1.GetContra();
-
-
-            string mensaje = "2/" + this.nom + this.contra;
+            string mensaje = "2/"+id1+"/"+ this.nom +"/"+ this.contra;
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
-
-            //MessageBox.Show("Bienvenido " + this.nom + " con contraseña: " + this.contra);
 
             //Recibimos la respuesta del servidor
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             MessageBox.Show(mensaje);
+            
+
+        }
+
+        private void DisconectBtn_Click(object sender, EventArgs e)
+        {
+            //Mensaje de desconexión
+            string mensaje = "0/";
+
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            try
+            {
+                server.Send(msg);
+            }
+            finally
+            {
+                MessageBox.Show("Error al enviar el mensaje");
+            }
+
+            // Nos desconectamos
+            server.Shutdown(SocketShutdown.Both);
+            server.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ConexionActual.BackColor = Color.Gray;
+            SigInBtn.Enabled = false;
+            LogInBtn.Enabled = false;
+            EnviarBtn.Enabled = false;
+            DisconectBtn.Enabled = false;
+
+            ListaConectados.RowCount = 8;
+            ListaConectados.ColumnCount = 1;
+            ListaConectados.ColumnHeadersVisible = false;
+            ListaConectados.RowHeadersVisible = false;
+            ListaConectados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void ConectadosBtn_Click(object sender, EventArgs e)
+        {
+            // Enviamos nombre 
+            string mensaje = "6/";
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+
+            //Recibimos la respuesta del servidor  Juan/Maria/Carlos/
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            string[] Nombres = new string[8];
+            string nombre = null;
+            for (int j = 0; j < 8; j++)
+            {
+                for (int i = 0; i < mensaje.Length; i++)
+                {
+                    if (mensaje[i] != '/')
+                    {
+                        nombre += mensaje[i];
+                    }
+                    else
+                    {
+                        Nombres[j] = nombre;
+                    }
+                }
+            }
+
+            //for(int p = 0, p < Nombres.Length; p++)
+            //{
+            //    ListaConectados.Rows[p].Cells[0].Value = Nombres;
+            //}
+
+            //DataGridView
+            ListaConectados.Rows[1].Cells[0].Value = "Juan";  
+            ListaConectados.Rows[2].Cells[0].Value = "Ernesto";
+            ListaConectados.Rows[3].Cells[0].Value = "KK";
         }
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            Form2 f1 = new Form2();
+            FormLogSigIn f1 = new FormLogSigIn();
             f1.SetId(1);
             f1.ShowDialog();
 
@@ -129,11 +222,16 @@ namespace ProjecteClient
             this.contra = f1.GetContra();
 
 
-            string mensaje = "1/" + this.nom + this.contra;
+            string mensaje = "1/" + this.nom +"/"+ this.contra;
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            //MessageBox.Show("Bienvenido " + this.nom + " con contraseña: " + this.contra);
+                server.Send(msg);
+            //try
+            //{
+            //}
+            //finally
+            //{
+            //    MessageBox.Show("Error al enviar el mensaje");
+            //}
 
             //Recibimos la respuesta del servidor
             byte[] msg2 = new byte[80];
