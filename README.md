@@ -6,4 +6,7 @@
 	URL del video: https://youtu.be/3z8-RbdUEK4
 	Version2 generada por Adria
 	Version2 verificada por Carla
+	Version2 comuniacada por Joaquin
+	URL del video: https://youtu.be/72AJRhfhlrk
+
 	
