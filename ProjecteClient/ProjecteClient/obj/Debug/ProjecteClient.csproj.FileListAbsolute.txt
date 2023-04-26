@@ -20,3 +20,14 @@ C:\Users\rocam\Desktop\ProjecteClient\ProjecteClient\ProjecteClient\obj\Debug\Pr
 C:\Users\rocam\Desktop\ProjecteClient\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
 C:\Users\rocam\Desktop\ProjecteClient\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
 C:\Users\rocam\Desktop\ProjecteClient\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormLogSigIn.resources
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb

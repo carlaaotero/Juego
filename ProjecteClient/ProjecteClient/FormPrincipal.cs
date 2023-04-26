@@ -26,7 +26,7 @@ namespace ProjecteClient
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9060);
+            IPEndPoint ipep = new IPEndPoint(direc, 9068);
 
 
             //Creamos el socket 
@@ -65,6 +65,7 @@ namespace ProjecteClient
                 {
                     MessageBox.Show("Error al enviar el mensaje");
                 }
+                
                 //Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
@@ -117,12 +118,12 @@ namespace ProjecteClient
             FormLogSigIn f1 = new FormLogSigIn();
             f1.SetId(2);
             f1.ShowDialog();
-            string id1, pu;
-            Random r = new Random();
-            id1 =Convert.ToString( r.Next(1000,9000));
+            //string id1;
+            //Random r = new Random();
+            //id1 =Convert.ToString( r.Next(1000,9000));
             this.nom = f1.GetNom();
             this.contra = f1.GetContra();
-            string mensaje = "2/"+id1+"/"+ this.nom +"/"+ this.contra;
+            string mensaje = "2/"+ this.nom +"/"+ this.contra;
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
@@ -153,6 +154,11 @@ namespace ProjecteClient
             // Nos desconectamos
             server.Shutdown(SocketShutdown.Both);
             server.Close();
+
+            SigInBtn.Enabled = false;
+            LogInBtn.Enabled = false;
+            EnviarBtn.Enabled = false;
+            DisconectBtn.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
