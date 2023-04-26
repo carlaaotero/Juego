@@ -9,4 +9,6 @@
 	Version2 comuniacada por Joaquin
 	URL del video: https://youtu.be/72AJRhfhlrk
 	Version3 generada por Joaquin
+	Version3 verificada por Adria
+
 	
