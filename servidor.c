@@ -25,6 +25,7 @@ typedef struct{
 //Variables globales
 ListaConectados milistaconectados;
 char conectados[300];
+int sockets[100];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; //Estructura para acceso excluyente
 
 //************************************************************************************************
@@ -67,15 +68,15 @@ int DameSocket(ListaConectados *l, char nom[20]){
 int DamePosicion(int *socket, ListaConectados *l){
 	int i =0;
 	int encontrado =0;
-	while((encontrado) && (l-> num != i)){
+	while((!encontrado) && (l-> num != i)){
 		if(l->conectados[i].socket==socket)
 			encontrado = 1;
 		else
 			i++;
 	}
-	if(encontrado)
-		return -1;
 	if(!encontrado)
+		return -1;
+	if(encontrado)
 		return i;
 }
 int EliminarConectado(int *socket, ListaConectados *l){
@@ -92,14 +93,23 @@ int EliminarConectado(int *socket, ListaConectados *l){
 		return 0;
 	}
 }
-void DameConectados(char respuesta[500], ListaConectados *l){
+void DameConectados(char VectorConectados[500], ListaConectados *l){
 	//sprintf(respuesta,"%d/",l->num);
 	for(int i =0; i<l->num; i++){
-		sprintf(respuesta,"%s%s/",respuesta,l->conectados[i].nombre);
+		sprintf(VectorConectados,"%s%s/",VectorConectados,l->conectados[i].nombre);
 	}
-	printf("%s\n", respuesta);
+	printf("%s\n", VectorConectados);
 }
 
+void EnviarListaConectados(char VectorConectados[500],ListaConectados *l){
+	int i=0;
+	while(i<l->num){
+		//DameSocket(&l,l->conecados[i].nombre);
+		printf("Envio a %s, con socket, %d y le mando %s\n",l->conectados[i].nombre,l->conectados[i].socket,VectorConectados);
+		write(l->conectados[i].socket,VectorConectados,strlen(VectorConectados));
+		i++;
+	}
+}
 //**************************************************************************************************
 //Atender Clientes
 void *AtenderCliente(void * socket)
@@ -109,6 +119,9 @@ void *AtenderCliente(void * socket)
 	
 	char peticion[500];
 	char respuesta[500];
+	//char respuesta2[500];
+	char LConectados[500];
+	
 	int ret;
 	
 	char logged[20];
@@ -140,10 +153,7 @@ void *AtenderCliente(void * socket)
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
-	//**************************************************************************
-	//Bucle infinito
-	//for(;;){
-		//int terminar = 0;
+	
 	while(!terminar){
 			printf("--------------------------------------------------------------------\n");
 			peticion[0] = '\0';
@@ -162,7 +172,7 @@ void *AtenderCliente(void * socket)
 			int codigo =  atoi (p);
 			// Ya tenemos el codigo de la peticion
 			char nombre[20];
-			printf ("Codigo: %d", codigo);
+			printf ("Codigo: %d\n", codigo);
 			
 			
 			if (codigo ==0) {
@@ -193,10 +203,11 @@ void *AtenderCliente(void * socket)
 					resultado = mysql_store_result (conn);
 					row =  mysql_fetch_row (resultado);
 					if (row == NULL)
-						strcpy (respuesta,"No\n");
+						strcpy (respuesta,"1/1/\n");
 					else{
 						//row = mysql_fetch_row(resultado);
-						sprintf(respuesta,"Bienvenido %s\n",row[1]);
+						//sprintf(respuesta,"Bienvenido %s\n",row[1]);
+						strcpy(respuesta,"1/2\n");
 						AnadirConectado(nombre, sock_conn,&milistaconectados);
 					}
 					printf("Correcto %s\n",respuesta);
@@ -204,8 +215,15 @@ void *AtenderCliente(void * socket)
 				}
 				else if (codigo ==2) //registrarse
 				{
-					int id=0;
-					strcpy(str_query,"SELECT MAX(idj) FROM jugadores;");
+					p = strtok( NULL, "/");
+					strcpy (nombre, p);
+					p=strtok(NULL,"/");
+					char contrasenya[20];
+					strcpy(contrasenya,p);
+					printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+					printf("Nombre: %s, contrasenya: %s \n ",nombre, contrasenya);
+					
+					sprintf(str_query,"SELECT jugadores.usuario FROM jugadores WHERE jugadores.usuario=%s\n",nombre);
 					err=mysql_query (conn, str_query);
 					if (err!=0)
 					{
@@ -214,41 +232,51 @@ void *AtenderCliente(void * socket)
 					}
 					
 					resultado = mysql_store_result (conn);
-					if(row ==NULL)
-						printf("Vacio");
+					row =mysql_fetch_row(resultado);
+					
+					if(row !=NULL){
+						printf("El usuario se puede conectar ");
+						strcpy(respuesta,"2/1/\n");
+						write (sock_conn,respuesta, strlen(respuesta));
+					}
+						
 					else{
+						strcpy(respuesta,"2/2/\n");
+						int id=0;
+						strcpy(str_query,"SELECT MAX(idj) FROM jugadores;");
+						err=mysql_query (conn, str_query);
+						if (err!=0)
+						{
+							printf ("Error al consultar datos de la base para la id: %u %s \n",
+									mysql_errno(conn), mysql_error(conn));
+						}
+						
+						resultado = mysql_store_result (conn);
 						row = mysql_fetch_row (resultado);
-						id = atoi(row);
-						id = id+1;
+						if(row!=NULL){
+							id = atoi(row[0]);
+							id = id+1;
+						}
+						
+						sprintf(str_query, "INSERT INTO jugadores VALUES ('%d','%s', '%s',%d);",id, nombre,contrasenya,0);
+						err=mysql_query (conn, str_query);
+						if (err!=0)
+						{
+							printf ("Error al consultar datos de la base %u %s \n",
+									mysql_errno(conn), mysql_error(conn));
+						
+						}
+						write (sock_conn,respuesta, strlen(respuesta));
 					}
 					
-					p = strtok( NULL, "/");
-					strcpy (nombre, p);
-					p=strtok(NULL,"/");
-					char contrasenya[20];
-					strcpy(contrasenya,p);
-					printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
 					
-					printf("Nombre: %s, contrasenya: %s \n ",nombre, contrasenya);
-					sprintf(str_query, "INSERT INTO jugadores VALUES ('%d','%s', '%s',%d);",id, nombre,contrasenya,0);
-					err=mysql_query (conn, str_query);
-					
-					
-					if (err!=0)
-					{
-						printf ("Error al consultar datos de la base %u %s \n",
-								mysql_errno(conn), mysql_error(conn));
-					}
-					
-					sprintf(respuesta,"Bienvenido %s \n",nombre);
-					write (sock_conn,respuesta, strlen(respuesta));
 				}
 				else if (codigo ==3){ // consulta 1: dame el nombre del jugador con la maxima puntuacion y su puntuacion
 					strcpy(str_query,"SELECT jugadores.usuario, jugadores.puntuacion FROM jugadores WHERE puntuacion = (SELECT MAX(puntuacion) FROM jugadores);");
 					printf("%s\n",str_query);
 					err=mysql_query (conn, str_query);
 					printf("prueba\n");
-					char respuesta2[20];
+					
 					if (err!=0)
 					{
 						printf ("Error al consultar datos de la base %u %s \n", mysql_errno(conn), mysql_error(conn));
@@ -258,16 +286,16 @@ void *AtenderCliente(void * socket)
 					else {
 						
 						resultado = mysql_store_result (conn);
-						strcpy(respuesta,"Los jugadores con mayor puntuaci\ufff3n son:\n");
+						//strcpy(respuesta,"Los jugadores con mayor puntuacion son:\n");
 						if (row == NULL){
 							memset(respuesta,'\0',512);
-							strcpy (respuesta,"No se han obtenido datos en la consulta\n");
+							strcpy (respuesta,"3/1/\n");
 						}
 						
 						else{
 							while((row = mysql_fetch_row (resultado))!= NULL){
-								sprintf (respuesta2,"%s, con puntuacion: %s.\n", row [0],row[1]);
-								strcat(respuesta,respuesta2);
+								sprintf (respuesta,"3/2/%s/%s\n", row [0],row[1]);
+								//strcat(respuesta,respuesta2);
 							}
 						}
 						
@@ -337,55 +365,62 @@ void *AtenderCliente(void * socket)
 						}
 					}
 				}
-				else if(codigo == 6){
-					char LConectados[500];
-					memset(LConectados,0,sizeof(LConectados));
-					DameConectados(LConectados, &milistaconectados);
-					write(sock_conn, LConectados,strlen(LConectados));
-				}
 				
+				memset(respuesta,0,sizeof(respuesta));
+				if(codigo!=0){
+					memset(LConectados,0,sizeof(LConectados));
+					strcpy(LConectados,"6/");
+					DameConectados(LConectados, &milistaconectados);
+					EnviarListaConectados(LConectados,&milistaconectados);
+					
+					//strcpy(respuesta,LConectados);
+					//write(sock_conn, LConectados,strlen(LConectados));
+				}
 			}
-		
+/*			printf("Conectados in\n");*/
+/*			DameConectados(LConectados, &milistaconectados);*/
+/*			EnviarListaConectados(LConectados,&milistaconectados);*/
+			//memset(respuesta,0,sizeof(respuesta));
+/*			printf("Conectados out\n");*/
+			printf("si\n");
+			printf("--------------------------------------------------------------------\n");
 	}
 	
 	close(sock_conn);
-}	// atrndrt cliente
+}	// AtenderCliente
 
 
 
 
-	int main(int argc, char *argv[])
-	{
-		int sock_conn, sock_listen, ret;
-		struct sockaddr_in serv_adr;
-		char peticion[512];
-		char respuesta[512];
-		// INICIALITZACIONS
-		// Obrim el socket
-		if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-			printf("Error creant socket");
-		// Fem el bind al port
+int main(int argc, char *argv[])
+{
+	int sock_conn, sock_listen, ret;
+	struct sockaddr_in serv_adr;
+	char peticion[512];
+	char respuesta[512];
+	// INICIALITZACIONS
+	// Obrim el socket
+	if ((sock_listen = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+		printf("Error creant socket");
+	// Fem el bind al port
+	
+	memset(&serv_adr, 0, sizeof(serv_adr));// inicialitza a zero serv_addr
+	serv_adr.sin_family = AF_INET;
 		
+	// asocia el socket a cualquiera de las IP de la m?quina.
+	//htonl formatea el numero que recibe al formato necesario
+	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
+	// establecemos el puerto de escucha
+	serv_adr.sin_port = htons(9095);
+	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
+		printf ("Error al bind");
+	if (listen(sock_listen, 4) < 0)
+		printf("Error en el Listen");
 		
-		memset(&serv_adr, 0, sizeof(serv_adr));// inicialitza a zero serv_addr
-		serv_adr.sin_family = AF_INET;
-		
-		// asocia el socket a cualquiera de las IP de la m?quina.
-		//htonl formatea el numero que recibe al formato necesario
-		serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-		// establecemos el puerto de escucha
-		serv_adr.sin_port = htons(9090);
-		if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
-			printf ("Error al bind");
-		if (listen(sock_listen, 4) < 0)
-			printf("Error en el Listen");
-		
-		
-		int sockets[100];
-		pthread_t thread;
-		int i = 0;
-		// Bucle infinito
-		for (;;){
+	pthread_t thread;
+	int i = 0;
+	// Bucle infinito
+	for (;;){
 			printf ("Escuchando\n");
 			
 			sock_conn = accept(sock_listen, NULL, NULL);
@@ -397,7 +432,7 @@ void *AtenderCliente(void * socket)
 			pthread_create(&thread, NULL, AtenderCliente, &sockets[i]);
 			i = i +1;
 			printf("%d\n",i);
-		}
-	}  // msin
+	}
+}  //Main
 	
 

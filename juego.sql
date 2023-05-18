@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS juego;
-CREATE DATABASE juego;
+DROP DATABASE IF EXISTS BBDDjuego;
+CREATE DATABASE BBDDjuego;
 
-USE juego;
+USE BBDDjuego;
 
 CREATE TABLE jugadores(
 	idj INT PRIMARY KEY NOT NULL ,
@@ -25,13 +25,21 @@ CREATE TABLE participacion(
 	FOREIGN KEY (idPart) REFERENCES partidas (idp),
 	FOREIGN KEY (idJugadores) REFERENCES jugadores (idj)
 )ENGINE = InnoDB;
+DELETE FROM jugadores;
+DELETE FROM partidas;
+DELETE FROM participacion;
 
-INSERT INTO jugadores VALUES (1, 'Carla', '1234',5);
-INSERT INTO jugadores VALUES (2, 'Adria', '5678',6);
+
+INSERT INTO jugadores VALUES (1, 'Carla', '1234',120);
+INSERT INTO jugadores VALUES (2, 'Adria', '5678',0);
 
 INSERT INTO partidas VALUES (1, 2, 'Carla', 'Equipazo', '35', '13/02/2023');
 INSERT INTO participacion VALUES (1, 2);
 
+
+SELECT * FROM (jugadores);
+SELECT * FROM (partidas);
+SELECT * FROM (participacion);
 
 
 

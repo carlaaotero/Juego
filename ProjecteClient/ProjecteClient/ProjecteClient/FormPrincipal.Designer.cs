@@ -54,6 +54,7 @@ namespace ProjecteClient
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.GroupConsultasBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
             this.GroupLogSignInBox.SuspendLayout();
@@ -202,16 +203,16 @@ namespace ProjecteClient
             // ListaConectados
             // 
             this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaConectados.Location = new System.Drawing.Point(15, 220);
+            this.ListaConectados.Location = new System.Drawing.Point(12, 220);
             this.ListaConectados.Name = "ListaConectados";
             this.ListaConectados.RowHeadersWidth = 51;
             this.ListaConectados.RowTemplate.Height = 24;
-            this.ListaConectados.Size = new System.Drawing.Size(92, 150);
+            this.ListaConectados.Size = new System.Drawing.Size(190, 150);
             this.ListaConectados.TabIndex = 14;
             // 
             // ConectadosBtn
             // 
-            this.ConectadosBtn.Location = new System.Drawing.Point(113, 220);
+            this.ConectadosBtn.Location = new System.Drawing.Point(12, 376);
             this.ConectadosBtn.Name = "ConectadosBtn";
             this.ConectadosBtn.Size = new System.Drawing.Size(92, 55);
             this.ConectadosBtn.TabIndex = 13;
@@ -301,11 +302,21 @@ namespace ProjecteClient
             this.panel1.Size = new System.Drawing.Size(612, 510);
             this.panel1.TabIndex = 16;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 524);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 17);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Usuario:";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 553);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.GroupLogSignInBox);
             this.Controls.Add(this.ListaConectados);
@@ -358,6 +369,7 @@ namespace ProjecteClient
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label7;
     }
 }
 
