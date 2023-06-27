@@ -29,6 +29,8 @@
 
 	Version6 generada por Joaquin
 	Version6 verificada por Adria
+	Version6 comuniacada por Carla
+	URL del video: https://youtu.be/UIgBBjAiVTo
 
 
 	
