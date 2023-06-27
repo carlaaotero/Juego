@@ -28,6 +28,7 @@
 	URL del video: https://youtu.be/EX4WxxQIGBU 
 
 	Version6 generada por Joaquin
+	Version6 verificada por Adria
 
 
 	
