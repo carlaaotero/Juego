@@ -31,3 +31,55 @@ C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.
 C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
 C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
 C:\SO\Projecte\V2\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V3\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormInvitacion.resources
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormInvitacion.resources
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\Users\34646\Desktop\UPC\SO\Version ultima\V5.1\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\SO\Projecte\V5\ProjecteClientV4-1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\SO\Projecte\V6\V6.1\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.AssemblyReference.cache
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.FormPrincipal.resources
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.Properties.Resources.resources
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.GenerateResource.cache
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.csproj.CoreCompileInputs.cache
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.exe
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\obj\Debug\ProjecteClient.pdb
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe.config
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.exe
+C:\Users\34646\Desktop\UPC\SO\FINAL\ProjecteClient\ProjecteClient\bin\Debug\ProjecteClient.pdb
